@@ -33,7 +33,7 @@ def dModel(L, vector):
 	return dlist
 
 def topN(dL,N):
-	topN = sorted(dL, key=op.itemgetter(1), reverse=True)[:N]
+	topN = sorted(dL, key=op.itemgetter(1), reverse=False)[:N]
 	return topN
 
 
