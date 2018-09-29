@@ -4,15 +4,14 @@ import pandas as pd
 mobyFrame = pd.read_csv("mobyFrame")
 rhymeFrame = pd.read_csv("rhymeFrame")
 
+print("Moby size is:", mobyFrame.shape)
+print("rhyme size is:", rhymeFrame.shape)
+
+
 rhymeFrame['word'] = rhymeFrame['word'].astype(str)
 mobyFrame['word'] = mobyFrame['word'].astype(str)
 mobyFrame['word'] = mobyFrame['word'].apply(lambda x: x.upper())
 
-mobyTest = mobyFrame[mobyFrame['word'] == "APOLOGETIC"]
-rhymeTest = rhymeFrame[rhymeFrame['word'] == 'APOLOGETIC']
-
-print(mobyTest)
-print(rhymeTest)
 
 wF = mobyFrame.join(rhymeFrame.set_index('word'), on='word')
 
@@ -21,14 +20,8 @@ wF = wF[pd.notnull(wF['pos'])]
 wF = wF[pd.notnull(wF['pron'])]
 
 wF = wF.reset_index(drop=True)
-print(wF.head(1000))
 
-wfTest = wF[wF['word'] == "ATMOSPHERIC"]
-
-for adj in wF.head().itertuples():
-	print(adj)
-	for x in range(len(adj)):
-		print(adj[x])
+print("wordFrame size is:", wF.shape)
 
 adjNoun = []
 
